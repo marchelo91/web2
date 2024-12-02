@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master}">
+<head>
+    <title>Editar Mesa - Sabor Gourmet</title>
+    <!-- Asegúrate de tener Bootstrap incluido en tu master layout -->
+</head>
+<body>
+    <div layout:fragment="page-content">
+        <div class="container bg-light p-4 mt-4 rounded shadow">
+            <h1 class="mb-4">Editar Mesa</h1> <!-- Título de la página de edición de mesa -->
+            <form th:action="@{/mesas/actualizar}" th:object="${mesa}" method="post">
+                <!-- Campo oculto para enviar el ID de la mesa -->
+                <input type="hidden" th:field="*{id}" /> <!-- Enviar el ID de la mesa al servidor -->
+
+                <!-- Campo para el número de la mesa -->
+                <div class="mb-3">
+                    <label for="numeroMesa" class="form-label fw-bold">Número de Mesa</label>
+                    <input type="text" id="numeroMesa" class="form-control" th:field="*{numeroMesa}" required />
+                </div>
+
+                <!-- Campo para la capacidad de la mesa -->
+                <div class="mb-3">
+                    <label for="capacidad" class="form-label fw-bold">Capacidad</label>
+                    <input type="number" id="capacidad" class="form-control" th:field="*{capacidad}" required />
+                </div>
+
+                <!-- Campo para la disponibilidad de la mesa -->
+                <div class="mb-3">
+                    <label for="disponible" class="form-label fw-bold">Disponibilidad</label>
+                    <select id="disponible" class="form-control" th:field="*{disponible}">
+                        <!-- Opción para indicar si la mesa está disponible -->
+                        <option th:value="true" th:selected="*{disponible}">Disponible</option>
+                        <!-- Opción para indicar si la mesa no está disponible -->
+                        <option th:value="false" th:selected="!*{disponible}">No Disponible</option>
+                    </select>
+                </div>
+
+                <!-- Botones de acción: actualizar o cancelar -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="bi bi-save"></i> Actualizar
+                    </button>
+                    <a href="/mesas/listar" class="btn btn-secondary btn-lg">
+                        <i class="bi bi-arrow-left-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

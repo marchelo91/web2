@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master}">
+<head>
+    <title>Clientes - Sabor Gourmet</title>
+</head>
+<body>
+    <div layout:fragment="page-content">
+        <div class="container bg-light p-4 mt-4 rounded">
+            <h1>Listado de Clientes</h1>
+            <!-- Botón para crear un nuevo cliente -->
+            <a class="btn btn-primary mb-3" th:href="@{/clientes/crear}">Crear Cliente</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iteración sobre la lista de clientes -->
+                    <tr th:each="cliente : ${clientes}">
+                        <!-- Mostrar el nombre del cliente -->
+                        <td th:text="${cliente.nombre}"></td>
+                        <!-- Mostrar el email del cliente -->
+                        <td th:text="${cliente.email}"></td>
+                        <td>
+                            <!-- Enlace para editar el cliente, pasa el ID dinámicamente -->
+                            <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}" class="btn btn-warning">Editar</a>
+                            <!-- Enlace para eliminar el cliente, pasa el ID dinámicamente -->
+                            <a th:href="@{/clientes/eliminar/{id}(id=${cliente.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

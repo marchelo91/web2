@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master}">
+<head>
+    <title>Crear Reserva - Sabor Gourmet</title>
+</head>
+<body>
+<div layout:fragment="page-content">
+    <div class="container mt-4">
+        <h1 class="mb-4 text-center">Crear Nueva Reserva</h1> <!-- Título de la página de creación de reserva -->
+        <form th:action="@{/reservas/guardar}" th:object="${reserva}" method="post" class="needs-validation">
+            <!-- Campo para el nombre del cliente -->
+            <div class="mb-3">
+                <label for="nombreCliente" class="form-label">Nombre del Cliente</label>
+                <input type="text" class="form-control" id="nombreCliente" th:field="*{nombreCliente}" placeholder="Ingresa el nombre" required>
+            </div>
+
+            <!-- Campo para la fecha de la reserva -->
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha" th:field="*{fecha}" required>
+            </div>
+
+            <!-- Campo para la hora de la reserva -->
+            <div class="mb-3">
+                <label for="hora" class="form-label">Hora</label>
+                <input type="time" class="form-control" id="hora" th:field="*{hora}" required>
+            </div>
+
+            <!-- Botón para guardar la reserva -->
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <!-- Enlace para cancelar y regresar al listado de reservas -->
+            <a class="btn btn-secondary" th:href="@{/reservas/listar}">Cancelar</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

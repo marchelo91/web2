@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Hace la página receptiva (responsive) -->
+    <title>Sabor Gourmet</title> <!-- Título de la página -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"> <!-- Enlace al archivo CSS de Bootstrap con Thymeleaf -->
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script> <!-- Enlace al archivo JS de Bootstrap con Thymeleaf -->
+</head>
+<body>
+    <!-- Fragmento para el Navbar (barra de navegación) -->
+    <div layout:fragment="navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary"> <!-- Barra de navegación con fondo azul -->
+            <a class="navbar-brand text-white" href="#">Sabor Gourmet</a> <!-- Nombre del restaurante en el navbar -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> <!-- Icono para dispositivos móviles -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto"> <!-- Lista de navegación con alineación a la derecha -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/clientes/listar">Clientes</a> <!-- Enlace a la lista de clientes -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/mesas/listar">Mesas</a> <!-- Enlace a la lista de mesas -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/reservas/listar">Reservas</a> <!-- Enlace a la lista de reservas -->
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Fragmento para el contenido principal -->
+    <div layout:fragment="page-content">
+        <!-- Aquí irá el contenido específico de cada página -->
+    </div>
+</body>
+</html>

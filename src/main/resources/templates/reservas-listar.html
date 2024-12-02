@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master}">
+<head>
+    <title>Reservas - Sabor Gourmet</title>
+</head>
+<body>
+<div layout:fragment="page-content">
+    <div class="container mt-4">
+        <h1 class="mb-4 text-center">Lista de Reservas</h1> <!-- Título de la página de listado de reservas -->
+        <!-- Botón para crear una nueva reserva -->
+        <a class="btn btn-primary mb-3" th:href="@{/reservas/crear}">Nueva Reserva</a>
+
+        <!-- Tabla para mostrar las reservas -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Cliente</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Acciones</th> <!-- Columna para las acciones de edición y eliminación -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteración sobre las reservas para mostrarlas en la tabla -->
+                <tr th:each="reserva : ${reservas}">
+                    <td th:text="${reserva.id}"></td> <!-- Muestra el ID de la reserva -->
+                    <td th:text="${reserva.nombreCliente}"></td> <!-- Muestra el nombre del cliente -->
+                    <td th:text="${reserva.fecha}"></td> <!-- Muestra la fecha de la reserva -->
+                    <td th:text="${reserva.hora}"></td> <!-- Muestra la hora de la reserva -->
+                    <td>
+                        <!-- Enlace para editar la reserva -->
+                        <a class="btn btn-warning btn-sm" th:href="@{'/reservas/editar/' + ${reserva.id}}">Editar</a>
+                        <!-- Enlace para eliminar la reserva -->
+                        <a class="btn btn-danger btn-sm" th:href="@{'/reservas/eliminar/' + ${reserva.id}}">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

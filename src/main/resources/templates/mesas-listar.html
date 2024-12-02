@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master}">
+<head>
+    <title>Mesas - Sabor Gourmet</title>
+</head>
+<body>
+    <div layout:fragment="page-content">
+        <div class="container bg-light p-4 mt-4 rounded">
+            <h1>Listado de Mesas</h1>
+            <a class="btn btn-primary mb-3" th:href="@{/mesas/crear}">Crear Mesa</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Número de Mesa</th>
+                        <th>Capacidad</th>
+                        <th>Disponibilidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se rellenan los datos de mesas -->
+                    <tr th:each="mesa : ${mesas}">
+                        <td th:text="${mesa.numeroMesa}"></td>
+                        <td th:text="${mesa.capacidad}"></td>
+                        <td>
+                            <span th:text="${mesa.disponible} ? 'Disponible' : 'No disponible'" 
+                                  class="badge"
+                                  th:classappend="${mesa.disponible} ? 'bg-success' : 'bg-danger'">
+                            </span>
+                        </td>
+                        <td>
+                            <a th:href="@{/mesas/editar/{id}(id=${mesa.id})}" class="btn btn-warning">Editar</a>
+                            <a th:href="@{/mesas/eliminar/{id}(id=${mesa.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

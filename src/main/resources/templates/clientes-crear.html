@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master}"> <!-- Define el layout principal para la página -->
+<head>
+    <title>Crear Cliente - Sabor Gourmet</title> <!-- Título de la página -->
+</head>
+<body>
+    <div layout:fragment="page-content"> <!-- Define la sección de contenido principal que será inyectada en el layout -->
+        <div class="container bg-light p-4 mt-4 rounded"> <!-- Contenedor de la página con estilo -->
+            <h1>Crear Cliente</h1> <!-- Título de la página -->
+            <!-- Formulario para crear un cliente -->
+            <form th:action="@{/clientes/guardar}" th:object="${cliente}" method="post"> 
+                <!-- th:action: define la URL a la que se enviará el formulario, usando Thymeleaf -->
+                <!-- th:object: Vincula el formulario con la entidad Cliente -->
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required /> <!-- Campo para el nombre del cliente -->
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control" th:field="*{email}" required /> <!-- Campo para el correo electrónico del cliente -->
+                </div>
+                <button type="submit" class="btn btn-success">Guardar</button> <!-- Botón para enviar el formulario -->
+                <a href="/clientes/listar" class="btn btn-secondary">Cancelar</a> <!-- Enlace para cancelar y volver a la lista de clientes -->
+            </form>
+        </div>
+    </div>
+</body>
+</html>

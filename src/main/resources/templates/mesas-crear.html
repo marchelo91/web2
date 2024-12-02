@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master}">
+<head>
+    <title>Crear Mesa - Sabor Gourmet</title>
+</head>
+<body>
+<div layout:fragment="page-content">
+    <div class="container bg-light p-4 mt-4 rounded">
+        <h1>Crear Mesa</h1> <!-- Título de la página de creación de mesa -->
+        <form th:action="@{/mesas/guardar}" th:object="${mesa}" method="post"> <!-- Enlace de acción para guardar la mesa -->
+            <!-- Campo para el número de la mesa -->
+            <div class="mb-3">
+                <label for="numeroMesa" class="form-label">Número de Mesa</label>
+                <input type="text" id="numeroMesa" class="form-control" th:field="*{numeroMesa}" required />
+            </div>
+
+            <!-- Campo para la capacidad de la mesa -->
+            <div class="mb-3">
+                <label for="capacidad" class="form-label">Capacidad</label>
+                <input type="number" id="capacidad" class="form-control" th:field="*{capacidad}" required />
+            </div>
+
+            <!-- Campo para la disponibilidad de la mesa -->
+            <div class="mb-3">
+                <label for="disponible" class="form-label">Disponibilidad</label>
+                <select id="disponible" class="form-control" th:field="*{disponible}">
+                    <option th:value="true" th:text="'Disponible'"></option> <!-- Opción de mesa disponible -->
+                    <option th:value="false" th:text="'No Disponible'"></option> <!-- Opción de mesa no disponible -->
+                </select>
+            </div>
+
+            <!-- Botones para guardar o cancelar -->
+            <button type="submit" class="btn btn-success">Guardar</button> <!-- Botón para guardar la mesa -->
+            <a href="/mesas/listar" class="btn btn-secondary">Cancelar</a> <!-- Enlace para cancelar la acción -->
+        </form>
+    </div>
+</div>
+</body>
+</html>
